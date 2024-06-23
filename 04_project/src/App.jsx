@@ -1,6 +1,6 @@
   import { useState } from 'react'
 
-  import './App.css'
+
   function App() {
     const [color,setcolor]=useState('white')//here ar the function which is used to set the color and the white color is default
   
