@@ -22,14 +22,12 @@ function App() {
     setPassword(pass);
   }, [length, numAllowed, charAllowed, setPassword]);
  
-  const copyPassword = useCallback(() => {
-    if (passwordRef.current) {
-      passwordRef.current.select();
-      passwordRef.current.setSelectionRange(0, password.length);
-      window.navigator.clipboard.writeText(password);
-    }
-  }, [password]);
-  
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    passwordRef.current?.setSelectionRange(0, 999);
+    window.navigator.clipboard.writeText(password)
+  }, [password])
+
   useEffect(() => {
     generatePassword();
   }, [length, numAllowed, charAllowed, generatePassword]);
@@ -44,11 +42,12 @@ function App() {
             placeholder="password "
             value={password}
             className="flex  item-center text-xl h-14 w-96 rounded-l-2xl pl-4 outline-none "
-            useRef={passwordRef}
+            readOnly
+            useref={passwordRef}
           />
           <button
             className="flex justify-center items-center text-xl h-14 w-36 bg-blue-600 rounded-r-2xl outline-none hover:bg-blue-700"
-            onClick={copyPassword}
+            onClick={copyPasswordToClipboard}
           >
             copy
           </button>
